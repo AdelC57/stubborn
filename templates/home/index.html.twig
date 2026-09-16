@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stubborn - Accueil{% endblock %}
+
+{% block body %}
+    <div class="featured-products">
+        {% for sweatshirt in featuredSweatshirts %}
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{{ asset('uploads/sweatshirts/' ~ sweatshirt.image) }}" alt="{{ sweatshirt.name }}">
+                </div>
+                <p class="product-name">{{ sweatshirt.name }}</p>
+                <p class="product-price">{{ sweatshirt.price }} €</p>
+                {% if app.user %}
+                    <a href="{{ path('app_product_show', {id: sweatshirt.id}) }}" class="btn btn-outline">VOIR</a>
+                {% endif %}
+            </div>
+        {% else %}
+            <p>Aucun produit mis en avant pour le moment.</p>
+        {% endfor %}
+    </div>
+
+    <div class="company-info">
+        <p><strong>Stubborn</strong> — Don't compromise on your look.<br>
+        Basée à Piccadilly Circus, Londres, Stubborn conçoit des sweat-shirts qui allient confort et caractère.
+        Découvrez notre collection et affirmez votre style.</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stubborn - Inscription{% endblock %}
+
+{% block body %}
+<div class="auth-box">
+    <h2>S'inscrire</h2>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.name) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.deliveryAddress) }}
+        {{ form_row(registrationForm.plainPassword.first) }}
+        {{ form_row(registrationForm.plainPassword.second) }}
+
+        <button type="submit" class="btn btn-primary">Créer un compte</button>
+    {{ form_end(registrationForm) }}
+
+    <p class="auth-switch">
+        Déjà inscrit ?
+        <a href="{{ path('app_login') }}" class="btn btn-primary">Se Connecter</a>
+    </p>
+</div>
+{% endblock %}

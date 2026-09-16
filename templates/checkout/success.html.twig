@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stubborn - Commande confirmée{% endblock %}
+
+{% block body %}
+    <div class="checkout-success">
+        <h2>Merci pour votre commande !</h2>
+        <p>Votre paiement a été accepté (mode test). Un email de confirmation vous sera envoyé.</p>
+        <a href="{{ path('app_products') }}" class="btn">Continuer mes achats</a>
+    </div>
+{% endblock %}

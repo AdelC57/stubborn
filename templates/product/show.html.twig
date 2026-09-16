@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stubborn - {{ sweatshirt.name }}{% endblock %}
+
+{% block body %}
+    <div class="product-detail">
+        <div class="product-detail-image">
+            <img src="{{ asset('uploads/sweatshirts/' ~ sweatshirt.image) }}" alt="{{ sweatshirt.name }}">
+        </div>
+
+        <div class="product-detail-info">
+            <p class="product-name">{{ sweatshirt.name }}</p>
+            <p class="product-price">{{ sweatshirt.price }} €</p>
+
+            <form method="post" action="{{ path('app_cart_add', {id: sweatshirt.id}) }}">
+                <label for="size-select"><strong>Taille</strong></label>
+                <select name="size" id="size-select" size="5">
+                    {% for stock in sweatshirt.stocks %}
+                        <option value="{{ stock.size }}" {{ stock.quantity <= 0 ? 'disabled' }}>
+                            {{ stock.size }}{{ stock.quantity <= 0 ? ' (rupture de stock)' }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit" class="btn">AJOUTER AU PANIER</button>
+            </form>
+        </div>
+    </div>
+
+    <p><a href="{{ path('app_products') }}">← Retour à la boutique</a></p>
+{% endblock %}
